@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import styles from '../styles/login.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { magic } from '../lib/magic-client'
 
 const Login = () => {
 
@@ -26,11 +27,21 @@ const Login = () => {
         }, 2000);
     }
 
-    const handleLoginWithEmail = () => {
+    const handleLoginWithEmail = async () => {
         if (!valid) {
             handleError('Invalid Email Address')
         } else {
-            router.push('/')
+            try {
+                setUserMsg('Logging In')
+                const token = await magic.auth.loginWithMagicLink({ email })
+                if (token) {
+                    router.push('/')
+                }
+            } catch (err) {
+                console.error(err)
+                handleError('Error Logging In')
+            }
+            // router.push('/')
         }
     }
 
@@ -45,6 +56,18 @@ const Login = () => {
             setValid(false)
         }
     }, [email])
+
+    useEffect(() => {
+        const handleRouteComplete = () => {
+            setUserMsg('')
+        }
+        router.events.on('routeChangeComplete', handleRouteComplete)
+        router.events.on('routeChangeError', handleRouteComplete)
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteComplete)
+            router.events.off('routeChangeError', handleRouteComplete)
+        }
+    }, [router])
 
     return (
         <main className={styles.container}>
