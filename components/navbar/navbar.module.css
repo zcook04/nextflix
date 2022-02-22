@@ -65,6 +65,9 @@
 
 .username {
     cursor: pointer;
+    min-width: 300px;
+    justify-self: flex-end;
+    text-align: right;
 }
 
 .logout {

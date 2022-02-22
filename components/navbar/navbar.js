@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from './navbar.module.css'
+import { magic } from '../../lib/magic-client'
 
 
 
 function navbar() {
     const router = useRouter()
     const [loggingOut, setLoggingOut] = useState(false)
+    const [user, setUser] = useState('Guest')
 
     const handleClickUsername = () => {
         loggingOut ? setLoggingOut(false) : setLoggingOut(true)
@@ -28,6 +30,15 @@ function navbar() {
         router.push("/logout")
     }
 
+    useEffect(async () => {
+        try {
+            const { email } = await magic.user.getMetadata()
+            setUser(email)
+        } catch (err) {
+            console.error('A problem occurred retrieving the email address', err)
+        }
+    }, [])
+
     return (
         <header className={styles.container}>
             <div className={styles.navLeft}><span className={styles.logo} onClick={handleClickHome}>Nextflix</span></div>
@@ -39,7 +50,7 @@ function navbar() {
             </nav>
             <div className={styles.navRight}>
                 <div className={styles.username} onClick={handleClickUsername}>
-                    zack@zack-cook.com
+                    {user}
                     <Image src='/static/icons/show_more.svg' height="12px" width="30px" alt="Show logout drop-down button" />
                 </div>
                 {loggingOut && <div className={styles.logout} onClick={handleClickLogout}>
