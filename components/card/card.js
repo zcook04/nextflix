@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import cls from 'classnames'
 
 function Card(props) {
-    const { imgUrl = '/static/thewitcher.jpeg', size = 'medium', id } = props
+    const { imgUrl = '/static/default_movie_image.jpg', size = 'medium', id } = props
     const [imgSrc, setImgSrc] = useState(imgUrl)
 
     const scale = id === 0 ? { scaleY: 1.1 } : { scale: 1.1 };
