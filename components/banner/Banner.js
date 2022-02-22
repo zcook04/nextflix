@@ -10,10 +10,10 @@ function Banner(props) {
                 <h3 className={styles.title}>{title}</h3>
                 <div className={styles.buttonWrapper}>
                     <button className={styles.buttonPrimary}>
-                        <Image src='/static/icons/play_icon.svg' width='40px' height='40px' />Play
+                        <Image src='/static/icons/play_icon.svg' width='40px' height='40px' alt="Play Button" />Play
                     </button>
                     <button className={styles.buttonSecondary}>
-                        <Image src='/static/icons/info_icon.svg' width='30px' height='30px' />More Info
+                        <Image src='/static/icons/info_icon.svg' width='30px' height='30px' alt="More Info Button" />More Info
                     </button>
                 </div>
             </div>
