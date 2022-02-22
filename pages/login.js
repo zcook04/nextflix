@@ -2,12 +2,14 @@ import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import styles from '../styles/login.module.css'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [valid, setValid] = useState(false)
     const [userMsg, setUserMsg] = useState('')
+    const router = useRouter()
 
     const validate = () => {
         return String(email)
@@ -27,6 +29,8 @@ const Login = () => {
     const handleLoginWithEmail = () => {
         if (!valid) {
             handleError('Invalid Email Address')
+        } else {
+            router.push('/')
         }
     }
 
