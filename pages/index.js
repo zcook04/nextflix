@@ -3,8 +3,38 @@ import styles from '../styles/Home.module.css'
 
 import Banner from '../components/banner/Banner'
 import Navbar from '../components/navbar/navbar'
-import Card from '../components/card/card'
 import SectionCards from '../components/card/section-cards'
+
+const disneyVideos = [
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+  {
+    imgUrl: "/static/thewitcher.jpeg"
+  },
+]
+
 
 export default function Home() {
   return (
@@ -16,7 +46,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" />
-      <SectionCards title="Disney" />
+      <SectionCards title="Disney" videos={disneyVideos} />
     </div>
   )
 }
