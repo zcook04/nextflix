@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--color-1);
+  color: var(--font-text-primary-color)
 }
 
 a {
@@ -13,4 +15,19 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+:root {
+  --color-1: #170303;
+  --color-2: #332E2E;
+  --color-3: #663C3C;
+  --color-4: #630E0E;
+  --color-5: #B31919;
+  --font-text-primary-color: #fafafa;
+
 }
