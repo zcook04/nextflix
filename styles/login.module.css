@@ -1,0 +1,100 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    position: relative;
+    background-image: url('/static/netflix-bg.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.loginUnderlay {
+    min-width: 300px;
+    min-height: 150px;
+    border-radius: 10px;
+    background-color: var(--color-4);
+    opacity: .95;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding: 1rem;
+}
+
+.loginBtn {
+    cursor: pointer;
+    background-color: var(--color-1);
+    padding: 2rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    border-radius: 10px;
+    z-index: 5;
+    transition: all .2s ease-in;
+    box-shadow: 3px 1px 5px 1px rgba(0, 0, 0, 0.205);
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgb(228, 228, 228);
+}
+
+.loginBtn:hover {
+    opacity: .8;
+    transition: all .2s ease-in;
+}
+
+.emailInput {
+    border: none;
+    border-bottom: 1px solid rgb(228, 228, 228);;
+    width: 75%;
+    padding: .25rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 1rem;
+    z-index: 5;
+    background: none;
+    align-self: flex-start;
+    color: rgb(228, 228, 228);
+}
+
+.emailInput:focus {
+    outline: none;
+}
+
+.emailInput::placeholder {
+    color: rgb(180, 180, 180);
+}
+
+.heading {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.subHeading {
+    margin: .2rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: rgb(180, 180, 180);
+}
+
+.skip {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: .7rem;
+    color: rgb(180, 180, 180);
+    cursor: pointer;
+    align-self: center;
+}
+
+.skip:hover {
+    opacity: .9;
+}
