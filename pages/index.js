@@ -6,19 +6,26 @@ import Navbar from '../components/navbar/navbar'
 import SectionCards from '../components/card/section-cards'
 import { getVideos } from '../lib/videos'
 
-
 export async function getServerSideProps() {
-  const disneyVideos = getVideos()
+  const disneyVideos = await getVideos('Disney Movies')
+  const marvelVideos = await getVideos('Marvel Movies')
+  const popularVideos = await getVideos('Popular Movies')
+  const travelVideos = await getVideos('Travel')
+  const webDesignVideos = await getVideos('webDesign')
 
   return {
     props: {
       disneyVideos,
+      marvelVideos,
+      popularVideos,
+      travelVideos,
+      webDesignVideos
     }
   }
 }
 
 export default function Home(props) {
-  const { disneyVideos } = props
+  const { disneyVideos, marvelVideos, popularVideos, travelVideos, webDesignVideos } = props
 
   return (
     <div className={styles.container}>
@@ -29,8 +36,11 @@ export default function Home(props) {
       </Head>
       <Navbar />
       <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" />
-      <SectionCards title="Disney" videos={disneyVideos} size="large" />
-      <SectionCards title="Marvel" videos={disneyVideos} size="small" />
+      <SectionCards title="Marvel" videos={marvelVideos} size="large" />
+      <SectionCards title="Disney" videos={disneyVideos} size="small" />
+      <SectionCards title="Popular" videos={popularVideos} size="medium" />
+      <SectionCards title="Travel" videos={travelVideos} size="large" />
+      <SectionCards title="Web Design" videos={webDesignVideos} size="small" />
     </div>
   )
 }
