@@ -38,9 +38,9 @@ export default function Home(props) {
       <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" />
       <SectionCards title="Marvel" videos={marvelVideos} size="large" />
       <SectionCards title="Disney" videos={disneyVideos} size="small" />
-      {/* <SectionCards title="Popular" videos={popularVideos} size="medium" />
+      <SectionCards title="Popular" videos={popularVideos} size="medium" />
       <SectionCards title="Travel" videos={travelVideos} size="large" />
-      <SectionCards title="Web Design" videos={webDesignVideos} size="small" /> */}
+      <SectionCards title="Web Design" videos={webDesignVideos} size="small" />
     </div>
   )
 }
