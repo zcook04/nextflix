@@ -36,13 +36,7 @@
     color: var(--color-5);
     cursor: pointer;
     font-weight: bold;
-    /* transition: all .25s ease-in; */
 }
-
-/* .logo:hover {
-    color: var(--color-4);
-    transition: all .25s ease-in;
-} */
 
 .navItems {
     text-decoration: none;
