@@ -5,8 +5,10 @@ import { motion } from 'framer-motion'
 import cls from 'classnames'
 
 function Card(props) {
-    const { imgUrl = '/static/thewitcher.jpeg', size = 'medium' } = props
+    const { imgUrl = '/static/thewitcher.jpeg', size = 'medium', id } = props
     const [imgSrc, setImgSrc] = useState(imgUrl)
+
+    const scale = id === 0 ? { scaleY: 1.1 } : { scale: 1.1 };
 
     const classMap = {
         large: styles.lgItem,
@@ -20,7 +22,7 @@ function Card(props) {
 
     return (
         <div className={styles.container}>
-            <motion.div whileHover={{ scale: 1.1 }} className={cls(classMap[size], styles.imgWrapper)}>
+            <motion.div whileHover={{ ...scale }} className={cls(classMap[size], styles.imgWrapper)}>
                 <Image src={imgSrc} alt="card image" layout="fill" className={styles.cardImage} onError={handleError} />
             </motion.div>
         </div>
