@@ -15,11 +15,9 @@
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
-    justify-content: flex-start;
 }
 
 .title {
-    /* margin-bottom: 1rem;; */
     font-size: 2rem;
     margin-left: 2rem;
 }
