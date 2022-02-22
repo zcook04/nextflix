@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import Banner from '../components/banner/Banner'
+import Navbar from '../components/navbar/navbar'
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         <meta name="description" content="Nextflix.  A custom built Netflix clone using Next.js to showcase server side rendering." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Nextflix</h1>
+      <Navbar />
       <Banner title="The Witcher" subtitle="Season 2" imgUrl="static/thewitcher.jpeg" />
     </div>
   )
