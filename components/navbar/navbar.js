@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from './navbar.module.css'
 import { magic } from '../../lib/magic-client'
+import Link from 'next/link'
 
 
 
@@ -25,9 +26,15 @@ function navbar() {
         router.push("/browse/my-list")
     }
 
-    const handleClickLogout = (e) => {
+    const handleClickLogout = async (e) => {
         e.preventDefault()
-        router.push("/logout")
+        try {
+            await magic.user.logout()
+            router.push('/login')
+        } catch (err) {
+            console.error('error logging out', err)
+            router.push('/login')
+        }
     }
 
     useEffect(async () => {
@@ -53,8 +60,9 @@ function navbar() {
                     {user}
                     <Image src='/static/icons/show_more.svg' height="12px" width="30px" alt="Show logout drop-down button" />
                 </div>
-                {loggingOut && <div className={styles.logout} onClick={handleClickLogout}>
-                    Logout
+                {loggingOut && <div className={styles.logout}>
+                    <Link href="/login"><a
+                        onClick={handleClickLogout}>Logout</a></Link>
                 </div>}
 
             </div>
