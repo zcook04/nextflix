@@ -3,7 +3,7 @@
     width: 100vw;
     display: flex;
     position: relative;
-    background-image: url('/static/netflix-bg.jpeg');
+    background-image: linear-gradient(rgb(0 0 0 / 40%), rgb(0 0 0 / 100%)), url('/static/netflix-bg.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -97,4 +97,8 @@
 
 .skip:hover {
     opacity: .9;
+}
+
+.emailWrapper {
+    display: flex;
 }
