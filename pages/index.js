@@ -37,10 +37,10 @@ export default function Home(props) {
       <Navbar />
       <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" videoId="ndl1W4ltcmg" />
       <SectionCards title="Marvel" videos={marvelVideos} size="large" />
-      <SectionCards title="Disney" videos={disneyVideos} size="small" />
+      {/* <SectionCards title="Disney" videos={disneyVideos} size="small" />
       <SectionCards title="Popular" videos={popularVideos} size="medium" />
       <SectionCards title="Travel" videos={travelVideos} size="large" />
-      <SectionCards title="Web Design" videos={webDesignVideos} size="small" />
+      <SectionCards title="Web Design" videos={webDesignVideos} size="small" /> */}
     </div>
   )
 }
