@@ -19,7 +19,7 @@ export async function getServerSideProps() {
       marvelVideos,
       popularVideos,
       travelVideos,
-      webDesignVideos
+      webDesignVideos,
     }
   }
 }
