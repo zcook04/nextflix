@@ -2,6 +2,7 @@ import styles from './videoid.module.css'
 import { useRouter } from 'next/router'
 import Modal from 'react-modal'
 import { getYoutubeVideoById } from '../../lib/videos'
+import Navbar from '../../components/navbar/navbar'
 
 Modal.setAppElement('#__next')
 
@@ -44,6 +45,7 @@ function VideoId({ video }) {
 
     return (
         <div className={styles.container}>
+            <Navbar />
             <div className={styles.wrapper} id="modal_wrapper">
                 <Modal
                     isOpen={true}
