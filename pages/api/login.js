@@ -8,8 +8,9 @@ export default async function login(req, res) {
 
     try {
         const didToken = req.headers.authorization ? req.headers.authorization.substr(7) : ''
-        const metadata = await mAdmin.users.getMetadataByToken(didToken)
-        const { issuer, publicAddress, email } = metadata
+        const { issuer, publicAddress, email } = await mAdmin.users.getMetadataByToken(didToken)
+
+        console.log(issuer, publicAddress, email)
 
         res.send({ done: true })
     } catch (error) {
