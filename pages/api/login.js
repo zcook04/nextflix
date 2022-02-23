@@ -1,6 +1,7 @@
 import { mAdmin } from '../../lib/magic'
 import jwt from 'jsonwebtoken'
-import { isNewUser } from '../../lib/hasura'
+import { createNewUser, isNewUser } from '../../lib/hasura'
+import { setTokenCookie } from '../../lib/cookies'
 
 export default async function login(req, res) {
     if (req.method !== 'POST')
@@ -25,7 +26,17 @@ export default async function login(req, res) {
 
         const newUser = await isNewUser(token, metadata.issuer)
 
-        res.send({ done: true, newUser })
+        if (newUser) {
+            const createdUser = await createNewUser(metadata, token)
+            const cookie = setTokenCookie(token, res)
+            console.log(cookie)
+            return res.send({ done: true, msg: 'New user', createdUser })
+        } else {
+            const cookie = setTokenCookie(token, res)
+            console.log(cookie)
+            return res.send({ done: true, msg: 'Not a new user' })
+        }
+
 
     } catch (error) {
         console.error('Something went wrong logging in', error)
