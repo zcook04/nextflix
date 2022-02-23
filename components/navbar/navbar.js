@@ -9,11 +9,11 @@ import Link from 'next/link'
 
 function navbar() {
     const router = useRouter()
-    const [loggingOut, setLoggingOut] = useState(false)
+    const [showLoggingOut, setshowLoggingOut] = useState(false)
     const [user, setUser] = useState('Guest')
 
     const handleClickUsername = () => {
-        loggingOut ? setLoggingOut(false) : setLoggingOut(true)
+        showLoggingOut ? setshowLoggingOut(false) : setshowLoggingOut(true)
     }
 
     const handleClickHome = (e) => {
@@ -60,7 +60,7 @@ function navbar() {
                     {user}
                     <Image src='/static/icons/show_more.svg' height="12px" width="30px" alt="Show logout drop-down button" />
                 </div>
-                {loggingOut && <div className={styles.logout}>
+                {showLoggingOut && <div className={styles.logout}>
                     <Link href="/login"><a
                         onClick={handleClickLogout}>Logout</a></Link>
                 </div>}

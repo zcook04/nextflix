@@ -35,7 +35,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" />
+      <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" videoId="ndl1W4ltcmg" />
       <SectionCards title="Marvel" videos={marvelVideos} size="large" />
       <SectionCards title="Disney" videos={disneyVideos} size="small" />
       <SectionCards title="Popular" videos={popularVideos} size="medium" />

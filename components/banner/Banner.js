@@ -1,15 +1,22 @@
 import React from 'react'
 import styles from './Banner.module.css'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 function Banner(props) {
-    const { title, imgUrl } = props
+    const { title, imgUrl, videoId } = props
+    const router = useRouter()
+
+    const playHandler = () => {
+        router.push(`/video/${videoId}`)
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.leftWrapper}>
                 <h3 className={styles.title}>{title}</h3>
                 <div className={styles.buttonWrapper}>
-                    <button className={styles.buttonPrimary}>
+                    <button className={styles.buttonPrimary} onClick={playHandler}>
                         <Image src='/static/icons/play_icon.svg' width='40px' height='40px' alt="Play Button" />Play
                     </button>
                     <button className={styles.buttonSecondary}>
