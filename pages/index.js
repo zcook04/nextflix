@@ -7,16 +7,24 @@ import { getVideos, getWatchItAgainVideos } from '../lib/videos'
 import { verifyToken } from '../lib/utils'
 
 export async function getServerSideProps(context) {
-  const token = context.req ? context.req.cookies.token : null
+  const token = context.req.cookies.token
   const userId = await verifyToken(token)
+  if (!userId) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/login",
+        permanent: false
+      }
+    }
+  }
   const disneyVideos = await getVideos('Disney Movies')
   const marvelVideos = await getVideos('Marvel Movies')
   const popularVideos = await getVideos('Popular Movies')
   const travelVideos = await getVideos('Travel')
   const webDesignVideos = await getVideos('webDesign')
   const watchItAgainVideos = await getWatchItAgainVideos(userId, token)
-  // console.log(watchItAgainVideos)
-  // console.log(disneyVideos)
+
 
 
   return {
