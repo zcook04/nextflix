@@ -6,7 +6,7 @@ const stats = async (req, res) => {
         if (!req.cookies.token)
             return res.status(403).json({ err: "Cookie required but not found" })
         const { issuer } = jwt.verify(req.cookies.token, process.env.JWT_SECRET)
-        const { videoId } = req.body
+        const { videoId } = req.method === "POST" ? req.body : req.query
         const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
 
 
@@ -23,13 +23,13 @@ const stats = async (req, res) => {
                 return res.status(200).json({ done: true, updatedVideoStats })
             } else {
                 const newVideoStats = await addStatsOne(req.cookies.token, issuer, videoId)
-                return res.status(200).json({ done: true, newVideoStats })
+                return res.status(201).json({ done: true, newVideoStats })
             }
         } else {
             if (statsExist.length > 0) {
                 return res.status(200).json({ stats: statsExist })
             } else {
-                return res.status(404).json({ msg: 'Video not found' })
+                return res.status(200).json({ stats: {} })
             }
         }
     } catch (error) {

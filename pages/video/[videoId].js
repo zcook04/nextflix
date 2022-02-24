@@ -56,13 +56,24 @@ function VideoId({ video }) {
         toggleLike === 2 ? setToggleLike(0) : setToggleLike(2)
     }
 
-    useEffect(() => {
-        const updateDbLike = async () => {
-            fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify({ "favorited": toggleLike, 'watched': true, videoId }) })
-        }
-        updateDbLike()
-
+    useEffect(async () => {
+        const response = await fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify({ "favorited": toggleLike, 'watched': true, videoId }) })
     }, [toggleLike])
+
+    useEffect(() => {
+        const getVideoData = async () => {
+            const res = await fetch(`/api/stats?videoId=${videoId}`, { method: "Get" })
+            const data = await res.json()
+            if (data.msg) {
+                const addVideo = fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify({ "favorited": toggleLike, 'watched': true, videoId }) })
+                return
+            }
+            const favorited = data?.stats[0]?.favorited
+            if (typeof favorited === 'number')
+                setToggleLike(favorited)
+        }
+        getVideoData()
+    }, [])
 
 
     return (
