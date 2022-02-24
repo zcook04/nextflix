@@ -19,7 +19,6 @@ export async function getServerSideProps(context) {
 }
 
 const myList = ({ myListVideos }) => {
-    console.log(myListVideos)
     return (
         <div>
             <Head><title>Nextflix: My List</title></Head>

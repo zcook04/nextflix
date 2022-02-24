@@ -7,7 +7,6 @@ export async function middleware(req, ev) {
     const { pathname } = req.nextUrl
     const url = req.nextUrl.clone()
 
-    console.log(pathname)
     if (pathname.includes('/api/login') || userId || pathname.includes('/login') || pathname.includes('/static')) {
         return NextResponse.next()
     }

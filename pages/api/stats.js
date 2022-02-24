@@ -6,7 +6,6 @@ const stats = async (req, res) => {
         if (!req.cookies.token)
             return res.status(403).json({ err: "Cookie required but not found" })
         const issuer = await verifyToken(req.cookies.token)
-        const { videoId } = req.method === "POST" ? req.body : req.query
         const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
 
 
@@ -37,7 +36,7 @@ const stats = async (req, res) => {
             }
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return res.status(500).json({ done: false, error })
     }
 }
