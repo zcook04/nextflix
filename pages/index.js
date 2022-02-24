@@ -9,15 +9,7 @@ import { verifyToken } from '../lib/utils'
 export async function getServerSideProps(context) {
   const token = context.req.cookies.token
   const userId = await verifyToken(token)
-  if (!userId) {
-    return {
-      props: {},
-      redirect: {
-        destination: "/login",
-        permanent: false
-      }
-    }
-  }
+
   const disneyVideos = await getVideos('Disney Trailers')
   const marvelVideos = await getVideos('Marvel Trailers')
   const popularVideos = await getVideos('Popular')
