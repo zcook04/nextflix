@@ -70,6 +70,14 @@ function VideoId({ video }) {
             const favorited = data?.stats[0]?.favorited
             if (typeof favorited === 'number')
                 setToggleLike(favorited)
+            if (!data.done) {
+                const payload = {
+                    "favorited": toggleLike,
+                    "watched": true,
+                    "videoId": videoId
+                }
+                fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify(payload) })
+            }
         }
         getVideoData()
     }, [])
