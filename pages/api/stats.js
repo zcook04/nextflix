@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { findVideoByIssuer, addStatsOne, updateStatsOne } from '../../lib/hasura'
+import { findVideoByIssuer, addStatsOne, updateStatsOne, getWatchedVideos } from '../../lib/hasura'
 
 const stats = async (req, res) => {
     try {
