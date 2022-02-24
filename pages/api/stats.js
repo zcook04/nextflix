@@ -13,16 +13,22 @@ const stats = async (req, res) => {
         if (req.method === "POST") {
             const { watched, favorited } = req.body
 
-            if (typeof watched !== 'boolean')
+            if (typeof watched !== 'boolean') {
+                console.error('watched required')
                 return res.status(422).json({ done: false, err: 'Watched is required' })
-            if (typeof favorited !== 'number')
+            }
+            if (typeof favorited !== 'number') {
+                console.error('favorite required')
                 return res.status(422).json({ done: false, err: 'Incorrect Value for favorited' })
+            }
 
             if (statsExist.length > 0) {
                 const updatedVideoStats = await updateStatsOne(req.cookies.token, { userId: issuer, videoId, watched, favorited })
+                console.log('updated video stats')
                 return res.status(200).json({ done: true, updatedVideoStats })
             } else {
                 const newVideoStats = await addStatsOne(req.cookies.token, issuer, videoId)
+                console.log('add video stats', newVideoStats)
                 return res.status(201).json({ done: true, newVideoStats })
             }
         } else {

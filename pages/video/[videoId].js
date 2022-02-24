@@ -41,30 +41,35 @@ function VideoId({ video }) {
 
     const [toggleLike, setToggleLike] = useState(0)
 
-    const likeHandler = () => {
-        toggleLike === 1 ? setToggleLike(0) : setToggleLike(1)
+    const likeHandler = async () => {
+        const newLikeValue = toggleLike === 1 ? 0 : 1
+        setToggleLike(newLikeValue)
+        const payload = {
+            "favorited": newLikeValue,
+            "watched": true,
+            "videoId": videoId
+        }
+        fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify(payload) })
     }
 
-    const dislikeHandler = () => {
-        toggleLike === 2 ? setToggleLike(0) : setToggleLike(2)
+    const dislikeHandler = async () => {
+        const newLikeValue = toggleLike === 2 ? 0 : 2
+        setToggleLike(newLikeValue)
+        const payload = {
+            "favorited": newLikeValue,
+            "watched": true,
+            "videoId": videoId
+        }
+        fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify(payload) })
     }
-
-    useEffect(async () => {
-        const response = await fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify({ "favorited": toggleLike, 'watched': true, videoId }) })
-    }, [toggleLike])
 
     useEffect(() => {
         const getVideoData = async () => {
             const res = await fetch(`/api/stats?videoId=${videoId}`, { method: "Get" })
             const data = await res.json()
-            if (!data.done) {
-                const addVideo = fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify({ "favorited": toggleLike, 'watched': true, videoId }) })
-                return
-            } else {
-                const favorited = data?.stats[0]?.favorited
-                if (typeof favorited === 'number')
-                    setToggleLike(favorited)
-            }
+            const favorited = data?.stats[0]?.favorited
+            if (typeof favorited === 'number')
+                setToggleLike(favorited)
         }
         getVideoData()
     }, [])
