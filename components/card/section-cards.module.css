@@ -1,6 +1,4 @@
 .container {
-    position: relative;
-    top: -200px;
     z-index: 2;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -15,6 +13,11 @@
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
+}
+
+.wrap {
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .title {
