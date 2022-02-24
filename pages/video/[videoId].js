@@ -2,8 +2,8 @@ import styles from './videoid.module.css'
 import { useRouter } from 'next/router'
 import Modal from 'react-modal'
 import { getYoutubeVideoById } from '../../lib/videos'
-import Like from '../../components/icons/likeIcon'
-import DisLike from '../../components/icons/dislikeIcon'
+import Like from '../../components/icons/LikeIcon'
+import DisLike from '../../components/icons/DislikeIcon'
 import { useState, useEffect } from 'react'
 
 Modal.setAppElement('#__next')
