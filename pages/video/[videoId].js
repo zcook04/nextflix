@@ -82,7 +82,8 @@ function VideoId({ video }) {
         getVideoData()
     }, [])
 
-
+    const isDev = process.env.DEVELOPMENT
+    const sourceVideoUrl = isDev ? `http://www.youtube-nocookie.com/embed/${videoId}?controls=0&rel=0&autoplay=1&fs=1` : `https://www.youtube-nocookie.com/embed/${videoId}?controls=0&rel=0&autoplay=1&fs=1`
     return (
         <div className={styles.container}>
             <div className={styles.wrapper} id="modal_wrapper">
@@ -94,7 +95,7 @@ function VideoId({ video }) {
                     className={styles.modal}>
 
                     <iframe id="player" type="text/html" width="640" height="390"
-                        src={`http://www.youtube-nocookie.com/embed/${videoId}?controls=0&rel=0&autoplay=1&fs=1`}
+                        src={sourceVideoUrl}
                         frameBorder="0" className={styles.videoPlayer} />
 
                     <article className={styles.modalBodyGrid}>
