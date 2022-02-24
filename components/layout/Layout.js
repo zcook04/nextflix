@@ -4,11 +4,16 @@ import { useRouter } from 'next/router'
 
 function Layout(props) {
     const router = useRouter()
-    const showNavbar = router.pathname === '/login' ? false : true
+    let noNav
+    if (router.pathname === '/login' || router.pathname === '/_error') {
+        noNav = true
+    } else {
+        noNav = false
+    }
 
     return (
         <>
-            {showNavbar && <Navbar />}
+            {!noNav && <Navbar />}
             {props.children}
         </>
     )
