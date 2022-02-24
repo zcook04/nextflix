@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { findVideoByIssuer } from '../../lib/hasura'
+import { findVideoByIssuer, addStatsOne } from '../../lib/hasura'
 
 const stats = async (req, res) => {
     if (req.method !== "POST")
@@ -12,8 +12,16 @@ const stats = async (req, res) => {
         const { videoId } = req.query
         const { issuer } = jwt.verify(req.cookies.token, process.env.JWT_SECRET)
 
-        const videoFound = await findVideoByIssuer(issuer, videoId, req.cookies.token)
-        return res.status(200).json({ msg: 'success', videoFound })
+        const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
+
+        if (statsExist) {
+            //update
+        } else {
+            const newVideoStats = await addStatsOne(req.cookies.token, issuer, videoId)
+            return res.status(200).json({ done: true, newVideoStats })
+        }
+
+        return res.status(200).json({ done: false, msg: 'No action taken.' })
 
     } catch (error) {
         console.log(error)
