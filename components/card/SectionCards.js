@@ -1,5 +1,5 @@
 import styles from './section-cards.module.css'
-import Card from './card'
+import Card from './Card'
 import Link from 'next/link'
 import clsx from 'classnames'
 

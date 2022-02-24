@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../components/navbar/navbar'
+import Navbar from '../navbar/Navbar'
 import { useRouter } from 'next/router'
 
 function Layout(props) {

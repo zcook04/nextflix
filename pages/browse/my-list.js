@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import SectionCards from '../../components/card/section-cards'
+import SectionCards from '../../components/card/SectionCards'
 import styles from '../../styles/mylist.module.css'
 import { getMyListVideos } from '../../lib/videos'
 import { verifyToken } from '../../lib/utils'

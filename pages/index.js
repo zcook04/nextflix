@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import Banner from '../components/banner/Banner'
-import SectionCards from '../components/card/section-cards'
+import SectionCards from '../components/card/SectionCards'
 import { getVideos, getWatchItAgainVideos } from '../lib/videos'
 import { verifyToken } from '../lib/utils'
 
