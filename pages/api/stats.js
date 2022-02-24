@@ -7,6 +7,8 @@ const stats = async (req, res) => {
             return res.status(403).json({ err: "Cookie required but not found" })
         const { issuer } = jwt.verify(req.cookies.token, process.env.JWT_SECRET)
         const { videoId } = req.body
+        const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
+
 
         if (req.method === "POST") {
             const { watched, favorited } = req.body
@@ -16,8 +18,6 @@ const stats = async (req, res) => {
             if (typeof favorited !== 'number')
                 return res.status(422).json({ done: false, err: 'Incorrect Value for favorited' })
 
-            const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
-
             if (statsExist.length > 0) {
                 const updatedVideoStats = await updateStatsOne(req.cookies.token, { userId: issuer, videoId, watched, favorited })
                 return res.status(200).json({ done: true, updatedVideoStats })
@@ -26,7 +26,6 @@ const stats = async (req, res) => {
                 return res.status(200).json({ done: true, newVideoStats })
             }
         } else {
-            const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
             if (statsExist.length > 0) {
                 return res.status(200).json({ stats: statsExist })
             } else {
