@@ -35,13 +35,26 @@ const Login = () => {
                 setUserMsg('Logging In')
                 const token = await magic.auth.loginWithMagicLink({ email })
                 if (token) {
-                    router.push('/')
+                    const response = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': "application/json",
+                        }
+                    })
+
+                    const loggedInResponse = await response.json()
+                    if (loggedInResponse.done) {
+                        router.push('/')
+                    } else {
+                        handleError('Error Logging In, Try Again')
+                    }
+
                 }
             } catch (err) {
                 console.error(err)
                 handleError('Error Logging In')
             }
-            // router.push('/')
         }
     }
 
