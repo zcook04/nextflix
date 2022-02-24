@@ -34,7 +34,6 @@ export default function Home(props) {
         <meta name="description" content="Nextflix.  A custom built Netflix clone using Next.js to showcase server side rendering." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
       <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" videoId="ndl1W4ltcmg" />
       <SectionCards title="Marvel" videos={marvelVideos} size="large" />
       {/* <SectionCards title="Disney" videos={disneyVideos} size="small" />

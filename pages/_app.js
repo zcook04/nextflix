@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { magic } from '../lib/magic-client'
 import { useRouter } from 'next/router'
 import Loading from '../components/loading/loading'
+import Navbar from '../components/navbar/navbar'
 
 
 
@@ -36,7 +37,12 @@ function MyApp({ Component, pageProps }) {
   // }, [router])
 
   // return isLoading ? <Loading /> : <Component {...pageProps} />
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Navbar />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
 export default MyApp

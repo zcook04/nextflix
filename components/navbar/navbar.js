@@ -37,13 +37,18 @@ function navbar() {
         }
     }
 
-    useEffect(async () => {
-        try {
-            const { email } = await magic.user.getMetadata()
-            setUser(email)
-        } catch (err) {
-            console.error('A problem occurred retrieving the email address', err)
+    useEffect(() => {
+        const setUserMetadata = async () => {
+            try {
+                const { email } = await magic.user.getMetadata()
+                setUser(email)
+            } catch (err) {
+                console.error('A problem occurred retrieving the email address', err)
+            }
         }
+        setUserMetadata()
+
+        return () => { console.log('unmount') }
     }, [])
 
     return (
