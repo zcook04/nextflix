@@ -31,10 +31,17 @@ function navbar() {
     const handleClickLogout = async (e) => {
         e.preventDefault()
         try {
+            const token = await magic.user.getIdToken()
             dispatch({ type: "LOGOUT" })
             setshowLoggingOut(false)
-            await magic.user.logout()
-            router.push('/login')
+            const response = await fetch("/api/logout", {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            });
+            const res = await response.json();
         } catch (err) {
             console.error('error logging out', err)
             router.push('/login')

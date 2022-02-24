@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import cls from 'classnames'
 
 function Card(props) {
-    const { imgUrl = '/static/default_movie_image.jpg', size = 'medium', id } = props
+    const { imgUrl = '/static/default_movie_image.jpg', size = 'medium', id, videoId } = props
     const [imgSrc, setImgSrc] = useState(imgUrl)
 
     const scale = id === 0 ? { scaleY: 1.1 } : { scale: 1.1 };
@@ -17,7 +17,13 @@ function Card(props) {
     }
 
     const handleError = () => {
+        if (imgSrc.indexOf('maxresdefault') > 0) {
+            setImgSrc(`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`)
+            return
+        }
         setImgSrc('/static/default_movie_image.jpg')
+        return
+
     }
 
     return (

@@ -18,9 +18,9 @@ export async function getServerSideProps(context) {
       }
     }
   }
-  const disneyVideos = await getVideos('Disney Movies')
-  const marvelVideos = await getVideos('Marvel Movies')
-  const popularVideos = await getVideos('Popular Movies')
+  const disneyVideos = await getVideos('Disney Trailers')
+  const marvelVideos = await getVideos('Marvel Trailers')
+  const popularVideos = await getVideos('Popular')
   const travelVideos = await getVideos('Travel')
   const webDesignVideos = await getVideos('webDesign')
   const watchItAgainVideos = await getWatchItAgainVideos(userId, token)
