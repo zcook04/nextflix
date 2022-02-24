@@ -30,6 +30,12 @@ const Login = () => {
         }, 2000);
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleLoginWithEmail()
+        }
+    }
+
     const handleLoginWithEmail = async () => {
         if (!valid) {
             handleError('Invalid Email Address')
@@ -96,7 +102,8 @@ const Login = () => {
                 <h2 className={styles.heading}>Welcome to Nextflix</h2>
                 <p className={styles.subHeading}>For the best experience login with your email address below</p>
                 <div className={styles.emailWrapper}>
-                    <input type="text" placeholder='Email Address' value={email} onChange={handleChange} className={styles.emailInput}></input>
+                    <input type="text" placeholder='Email Address' value={email} onChange={handleChange} className={styles.emailInput}
+                        onKeyPress={handleKeyPress}></input>
                     <div>{valid && <Image src={'/static/icons/accept_check_white.png'} width="20px" height="20px" />}</div>
                 </div>
                 <div className={styles.loginBtn} onClick={handleLoginWithEmail}>{userMsg ? userMsg : 'Login'}</div>
