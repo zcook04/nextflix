@@ -5,7 +5,7 @@ import { getYoutubeVideoById } from '../../lib/videos'
 import Navbar from '../../components/navbar/navbar'
 import Like from '../../components/icons/likeIcon'
 import DisLike from '../../components/icons/dislikeIcon'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 Modal.setAppElement('#__next')
 
@@ -55,6 +55,15 @@ function VideoId({ video }) {
     const dislikeHandler = () => {
         toggleLike === 2 ? setToggleLike(0) : setToggleLike(2)
     }
+
+    useEffect(() => {
+        const updateDbLike = async () => {
+            fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify({ "favorited": toggleLike, 'watched': true, videoId }) })
+        }
+        updateDbLike()
+
+    }, [toggleLike])
+
 
     return (
         <div className={styles.container}>
