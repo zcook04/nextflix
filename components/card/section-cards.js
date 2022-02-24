@@ -4,10 +4,10 @@ import Link from 'next/link'
 import clsx from 'classnames'
 
 function SectionCards(props) {
-    const { title, videos = [], size, shouldWrap = false } = props
+    const { title, videos = [], size, shouldWrap = false, moveUp = false } = props
 
     return (
-        <section className={styles.container}>
+        <section className={clsx(styles.container, moveUp && styles.moveUp)}>
             <h2 className={styles.title}>{title}</h2>
             <div className={clsx(styles.cardWrapper, shouldWrap && styles.wrap)}>
                 {videos.map((video, i) => {

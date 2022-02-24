@@ -20,6 +20,11 @@
     gap: 1rem;
 }
 
+.moveUp {
+    position: relative;
+    top: -200px;
+}
+
 .title {
     font-size: 2rem;
     margin-left: 2rem;
