@@ -2,9 +2,11 @@ import { findVideoByIssuer, addStatsOne, updateStatsOne, getWatchedVideos } from
 import { verifyToken } from '../../lib/utils'
 
 const stats = async (req, res) => {
+    const inputParams = req.method === "POST" ? req.body : req.query
     try {
         if (!req.cookies.token)
             return res.status(403).json({ err: "Cookie required but not found" })
+        const { videoId } = inputParams
         const issuer = await verifyToken(req.cookies.token)
         const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
 
