@@ -24,11 +24,9 @@ const stats = async (req, res) => {
 
             if (statsExist.length > 0) {
                 const updatedVideoStats = await updateStatsOne(req.cookies.token, { userId: issuer, videoId, watched, favorited })
-                console.log('updated video stats')
                 return res.status(200).json({ done: true, updatedVideoStats })
             } else {
                 const newVideoStats = await addStatsOne(req.cookies.token, issuer, videoId)
-                console.log('add video stats', newVideoStats)
                 return res.status(201).json({ done: true, newVideoStats })
             }
         } else {
