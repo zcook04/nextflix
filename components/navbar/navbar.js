@@ -8,7 +8,7 @@ import { AuthContext } from '../../context/authContext'
 
 
 
-function navbar() {
+function Navbar() {
     const router = useRouter()
     const [showLoggingOut, setshowLoggingOut] = useState(false)
 
@@ -84,4 +84,4 @@ function navbar() {
     )
 }
 
-export default navbar
+export default Navbar
