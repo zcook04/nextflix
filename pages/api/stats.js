@@ -27,9 +27,9 @@ const stats = async (req, res) => {
             }
         } else {
             if (statsExist.length > 0) {
-                return res.status(200).json({ stats: statsExist })
+                return res.status(200).json({ done: true, stats: statsExist })
             } else {
-                return res.status(200).json({ stats: {} })
+                return res.status(200).json({ done: false, stats: {} })
             }
         }
     } catch (error) {

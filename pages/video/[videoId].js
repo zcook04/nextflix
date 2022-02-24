@@ -64,13 +64,14 @@ function VideoId({ video }) {
         const getVideoData = async () => {
             const res = await fetch(`/api/stats?videoId=${videoId}`, { method: "Get" })
             const data = await res.json()
-            if (data.msg) {
+            if (!data.done) {
                 const addVideo = fetch('/api/stats', { method: "POST", headers: { "content-type": "application/json", "accept": "application/json" }, body: JSON.stringify({ "favorited": toggleLike, 'watched': true, videoId }) })
                 return
+            } else {
+                const favorited = data?.stats[0]?.favorited
+                if (typeof favorited === 'number')
+                    setToggleLike(favorited)
             }
-            const favorited = data?.stats[0]?.favorited
-            if (typeof favorited === 'number')
-                setToggleLike(favorited)
         }
         getVideoData()
     }, [])
