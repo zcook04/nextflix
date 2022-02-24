@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from './navbar.module.css'
 import { magic } from '../../lib/magic-client'
 import Link from 'next/link'
+import { AuthContext } from '../../context/authContext'
 
 
 
 function navbar() {
     const router = useRouter()
     const [showLoggingOut, setshowLoggingOut] = useState(false)
-    const [user, setUser] = useState('Guest')
+
+    const { dispatch, state } = useContext(AuthContext)
 
     const handleClickUsername = () => {
         showLoggingOut ? setshowLoggingOut(false) : setshowLoggingOut(true)
@@ -29,6 +31,8 @@ function navbar() {
     const handleClickLogout = async (e) => {
         e.preventDefault()
         try {
+            dispatch({ type: "LOGOUT" })
+            setshowLoggingOut(false)
             await magic.user.logout()
             router.push('/login')
         } catch (err) {
@@ -41,14 +45,12 @@ function navbar() {
         const setUserMetadata = async () => {
             try {
                 const { email } = await magic.user.getMetadata()
-                setUser(email)
+                dispatch({ type: "LOGIN", payload: email })
             } catch (err) {
                 console.error('A problem occurred retrieving the email address', err)
             }
         }
         setUserMetadata()
-
-        return () => { console.log('unmount') }
     }, [])
 
     return (
@@ -62,7 +64,7 @@ function navbar() {
             </nav>
             <div className={styles.navRight}>
                 <div className={styles.username} onClick={handleClickUsername}>
-                    {user}
+                    {state.email}
                     <Image src='/static/icons/show_more.svg' height="12px" width="30px" alt="Show logout drop-down button" />
                 </div>
                 {showLoggingOut && <div className={styles.logout}>

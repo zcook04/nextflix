@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styles from '../styles/login.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { magic } from '../lib/magic-client'
+import { AuthContext } from '../context/authContext'
 
 const Login = () => {
 
@@ -11,6 +12,8 @@ const Login = () => {
     const [valid, setValid] = useState(false)
     const [userMsg, setUserMsg] = useState('')
     const router = useRouter()
+    const { dispatch } = useContext(AuthContext)
+
 
     const validate = () => {
         return String(email)
@@ -45,6 +48,8 @@ const Login = () => {
 
                     const loggedInResponse = await response.json()
                     if (loggedInResponse.done) {
+                        const { email } = await magic.user.getMetadata()
+                        dispatch({ type: 'LOGIN', payload: email })
                         router.push('/')
                     } else {
                         handleError('Error Logging In, Try Again')
@@ -95,7 +100,6 @@ const Login = () => {
                     <div>{valid && <Image src={'/static/icons/accept_check_white.png'} width="20px" height="20px" />}</div>
                 </div>
                 <div className={styles.loginBtn} onClick={handleLoginWithEmail}>{userMsg ? userMsg : 'Login'}</div>
-                <div className={styles.skip}>Skip login and enter site</div>
             </div>
         </main>
     )

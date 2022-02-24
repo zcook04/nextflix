@@ -1,14 +1,8 @@
 import '../styles/globals.css'
-import { useEffect, useState } from 'react'
-import { magic } from '../lib/magic-client'
+import React from 'react'
 import { useRouter } from 'next/router'
-import Loading from '../components/loading/loading'
-import Navbar from '../components/navbar/navbar'
-
-
-
-
-
+import Layout from '../components/layout/Layout'
+import AuthProvider from '../context/authContext'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -37,11 +31,13 @@ function MyApp({ Component, pageProps }) {
   // }, [router])
 
   // return isLoading ? <Loading /> : <Component {...pageProps} />
+
   return (
-    <>
-      <Navbar />
-      <Component {...pageProps} />
-    </>
+    <AuthProvider>
+      <Layout >
+        <Component {...pageProps} />
+      </Layout>
+    </AuthProvider>
   )
 }
 
