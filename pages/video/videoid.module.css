@@ -64,7 +64,6 @@
   .modalVideoDate {
     color: #cdcdcd;
     font-size: 1rem;
-    margin-bottom: 1rem;
   }
 
   .modalVideoDescription {
@@ -95,6 +94,9 @@
   .modalSubInfoFlex {
     display: flex;
     gap: 2rem;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   
   .description {
@@ -138,23 +140,29 @@
   
   .likeDislikeBtnWrapper {
     display: flex;
-    margin-bottom: 0.75rem /* 12px */;
-    position: absolute;
-    top: 35%;
-    padding-left: 1rem /* 48px */;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    left: -14px;
   }
   
   .btnWrapper {
-    border-color: var(--white10);
+    border-color: white;
     border-style: solid;
     border-width: 2px;
-    background-color: var(--gray40);
+    background-color: var(--color-2);
     border-radius: 9999px;
     padding: 0.5rem /* 8px */;
     display: flex;
     justify-content: center;
+    cursor: pointer;
   }
   
   .likeBtnWrapper {
     margin-right: 0.5rem /* 8px */;
+  }
+
+  .btn {
+    border: 0;
+    background: none;
   }

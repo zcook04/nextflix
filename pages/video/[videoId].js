@@ -3,6 +3,9 @@ import { useRouter } from 'next/router'
 import Modal from 'react-modal'
 import { getYoutubeVideoById } from '../../lib/videos'
 import Navbar from '../../components/navbar/navbar'
+import Like from '../../components/icons/likeIcon'
+import DisLike from '../../components/icons/dislikeIcon'
+import { useState } from 'react'
 
 Modal.setAppElement('#__next')
 
@@ -43,6 +46,16 @@ function VideoId({ video }) {
     const { title, date, description, views } = video
     const formattedDate = new Date(date).toLocaleDateString()
 
+    const [toggleLike, setToggleLike] = useState(0)
+
+    const likeHandler = () => {
+        toggleLike === 1 ? setToggleLike(0) : setToggleLike(1)
+    }
+
+    const dislikeHandler = () => {
+        toggleLike === 2 ? setToggleLike(0) : setToggleLike(2)
+    }
+
     return (
         <div className={styles.container}>
             <Navbar />
@@ -55,7 +68,7 @@ function VideoId({ video }) {
                     className={styles.modal}>
 
                     <iframe id="player" type="text/html" width="640" height="390"
-                        src={`http://www.youtube-nocookie.com/embed/${videoId}?controls=0&rel=0&autoplay=1`}
+                        src={`http://www.youtube-nocookie.com/embed/${videoId}?controls=0&rel=0&autoplay=1&fs=1`}
                         frameBorder="0" className={styles.videoPlayer} />
 
                     <article className={styles.modalBodyGrid}>
@@ -66,7 +79,20 @@ function VideoId({ video }) {
                             <div className={styles.modalSubInfoFlex} >
                                 <div className={styles.modalVideoViewCount}><span className={styles.modalKeyText}>Views:</span><span className={styles.modalValueText}>{views}</span></div>
                                 <div className={styles.modalVideoDate}><span className={styles.modalKeyText}>Date:</span><span className={styles.modalValueText}>{formattedDate}</span></div>
+                                <div className={styles.likeDislikeBtnWrapper}>
+                                    <button className={styles.btn} onClick={likeHandler}>
+                                        <div className={styles.btnWrapper}>
+                                            <Like width="15px" height="15px" selected={toggleLike === 1} />
+                                        </div>
+                                    </button>
+                                    <button className={styles.btn} onClick={dislikeHandler}>
+                                        <div className={styles.btnWrapper}>
+                                            <DisLike width="15px" height="15px" selected={toggleLike === 2} />
+                                        </div>
+                                    </button>
+                                </div>
                             </div>
+
                             <div className={styles.modalVideoDescription}>
                                 {description}
                             </div>

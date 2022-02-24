@@ -1,10 +1,10 @@
-const Like = ({ fill = "white", selected = false }) => (
+const Like = ({ fill = "white", selected = false, width = "34px", height = "34px" }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="white"
-        width="34px"
-        height="34px"
+        width={width}
+        height={height}
     >
         <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
         <path d="M21 12v-2h-9l1.34-5.34L9 9v10h9z" opacity={selected ? 1 : 0} />
