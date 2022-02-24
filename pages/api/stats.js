@@ -1,11 +1,11 @@
-import jwt from 'jsonwebtoken'
 import { findVideoByIssuer, addStatsOne, updateStatsOne, getWatchedVideos } from '../../lib/hasura'
+import { verifyToken } from '../../lib/utils'
 
 const stats = async (req, res) => {
     try {
         if (!req.cookies.token)
             return res.status(403).json({ err: "Cookie required but not found" })
-        const { issuer } = jwt.verify(req.cookies.token, process.env.JWT_SECRET)
+        const issuer = await verifyToken(req.cookies.token)
         const { videoId } = req.method === "POST" ? req.body : req.query
         const statsExist = await findVideoByIssuer(issuer, videoId, req.cookies.token)
 

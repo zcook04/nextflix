@@ -4,10 +4,11 @@ import styles from '../styles/Home.module.css'
 import Banner from '../components/banner/Banner'
 import SectionCards from '../components/card/section-cards'
 import { getVideos, getWatchItAgainVideos } from '../lib/videos'
+import { verifyToken } from '../lib/utils'
 
-export async function getServerSideProps() {
-  const userId = 'did:ethr:0x5501BD0c7edd67d72E3a5b60606eaA5B2e0389F3'
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3N1ZXIiOiJkaWQ6ZXRocjoweDU1MDFCRDBjN2VkZDY3ZDcyRTNhNWI2MDYwNmVhQTVCMmUwMzg5RjMiLCJwdWJsaWNBZGRyZXNzIjoiMHg1NTAxQkQwYzdlZGQ2N2Q3MkUzYTViNjA2MDZlYUE1QjJlMDM4OUYzIiwiZW1haWwiOiJ6YWNoYXJ5amNvb2tAb3V0bG9vay5jb20iLCJvYXV0aFByb3ZpZGVyIjpudWxsLCJwaG9uZU51bWJlciI6bnVsbCwiaWF0IjoxNjQ1NzE2NDUzLCJleHAiOjE2NDYzMjEyNTMsImh0dHBzOi8vaGFzdXJhLmlvL2p3dC9jbGFpbXMiOnsieC1oYXN1cmEtYWxsb3dlZC1yb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtSGFzdXJhLVVzZXItSWQiOiJkaWQ6ZXRocjoweDU1MDFCRDBjN2VkZDY3ZDcyRTNhNWI2MDYwNmVhQTVCMmUwMzg5RjMifX0.pJ2-_k3WaoDOtXijog3su2MRPtu8bsND0jGVkjgQFfk'
+export async function getServerSideProps(context) {
+  const token = context.req ? context.req.cookies.token : null
+  const userId = await verifyToken(token)
   const disneyVideos = await getVideos('Disney Movies')
   const marvelVideos = await getVideos('Marvel Movies')
   const popularVideos = await getVideos('Popular Movies')
