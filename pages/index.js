@@ -49,7 +49,6 @@ export default function Home(props) {
       <SectionCards title="Travel" videos={travelVideos} size="small" moveUp={true} />
       <SectionCards title="Web Design" videos={webDesignVideos} size="small" moveUp={true} />
       <SectionCards title="Watch It Again" videos={watchItAgainVideos} size="small" moveUp={true} />
-
     </div>
   )
 }
