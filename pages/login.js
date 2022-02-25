@@ -100,7 +100,7 @@ const Login = () => {
             </Head>
             <div className={styles.loginUnderlay}>
                 <h2 className={styles.heading}>Welcome to Nextflix</h2>
-                <p className={styles.subHeading}>For the best experience login with your email address below</p>
+                <p className={styles.subHeading}>Please enter a valid email address to login.</p>
                 <div className={styles.emailWrapper}>
                     <input type="text" placeholder='Email Address' value={email} onChange={handleChange} className={styles.emailInput}
                         onKeyPress={handleKeyPress}></input>
