@@ -44,9 +44,9 @@ export default function Home(props) {
       </Head>
       <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" videoId="ndl1W4ltcmg" />
       <SectionCards title="Marvel" videos={marvelVideos} size="large" moveUp={true} />
-      <SectionCards title="Disney" videos={disneyVideos} size="small" moveUp={true} />
-      <SectionCards title="Popular" videos={popularVideos} size="medium" moveUp={true} />
-      <SectionCards title="Travel" videos={travelVideos} size="large" moveUp={true} />
+      <SectionCards title="Disney" videos={disneyVideos} size="medium" moveUp={true} />
+      <SectionCards title="Popular" videos={popularVideos} size="small" moveUp={true} />
+      <SectionCards title="Travel" videos={travelVideos} size="small" moveUp={true} />
       <SectionCards title="Web Design" videos={webDesignVideos} size="small" moveUp={true} />
       <SectionCards title="Watch It Again" videos={watchItAgainVideos} size="small" moveUp={true} />
 
