@@ -5,6 +5,7 @@ import Banner from '../components/banner/Banner'
 import SectionCards from '../components/card/SectionCards'
 import { getVideos, getWatchItAgainVideos } from '../lib/videos'
 import { verifyToken } from '../lib/utils'
+import bannerData from '../data/banner_data.json'
 
 export async function getServerSideProps(context) {
   const token = context.req.cookies.token
@@ -27,6 +28,7 @@ export async function getServerSideProps(context) {
       travelVideos,
       webDesignVideos,
       watchItAgainVideos,
+      bannerData,
     }
   }
 }
@@ -42,7 +44,7 @@ export default function Home(props) {
         <meta name="description" content="Nextflix.  A custom built Netflix clone using Next.js to showcase server side rendering." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Banner title="The Witcher" subtitle="Season 2" imgUrl="/static/thewitcher.jpeg" videoId="ndl1W4ltcmg" />
+      <Banner bannerData={bannerData} />
       <SectionCards title="Marvel" videos={marvelVideos} size="large" moveUp={true} />
       <SectionCards title="Disney" videos={disneyVideos} size="medium" moveUp={true} />
       <SectionCards title="Popular" videos={popularVideos} size="small" moveUp={true} />

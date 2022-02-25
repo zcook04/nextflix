@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Banner.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 function Banner(props) {
-    const { title, imgUrl, videoId } = props
+    const { title, imgUrl, videoId, description } = props.bannerData
     const router = useRouter()
 
     const playHandler = () => {
@@ -17,10 +17,7 @@ function Banner(props) {
                 <h3 className={styles.title}>{title}</h3>
                 <div className={styles.buttonWrapper}>
                     <button className={styles.buttonPrimary} onClick={playHandler}>
-                        <Image src='/static/icons/play_icon.svg' width='40px' height='40px' alt="Play Button" />Play
-                    </button>
-                    <button className={styles.buttonSecondary}>
-                        <Image src='/static/icons/info_icon.svg' width='30px' height='30px' alt="More Info Button" />More Info
+                        <Image src='/static/icons/play_circle_black.svg' width='30px' height='30px' alt="Play Button" />Play
                     </button>
                 </div>
             </div>
