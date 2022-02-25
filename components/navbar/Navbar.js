@@ -60,6 +60,8 @@ function Navbar() {
         setUserMetadata()
     }, [])
 
+    const logoutStyle = showLoggingOut ? styles.showLogout : styles.hideLogout
+
     return (
         <header className={styles.container}>
             <div className={styles.navLeft}><span className={styles.logo} onClick={handleClickHome}>Nextflix</span></div>
@@ -74,10 +76,13 @@ function Navbar() {
                     {state.email}
                     <Image src='/static/icons/show_more.svg' height="12px" width="30px" alt="Show logout drop-down button" />
                 </div>
-                {showLoggingOut && <div className={styles.logout}>
+                <div className={logoutStyle}>
                     <Link href="/login"><a
-                        onClick={handleClickLogout}>Logout</a></Link>
-                </div>}
+                        onClick={handleClickLogout}>
+                        <div className={styles.logoutWrapper}>Logout
+                            <Image src='/static/icons/logout_white.svg' height="20px" width="20px" alt="Logout Icon" /></div>
+                    </a></Link>
+                </div>
 
             </div>
         </header>
